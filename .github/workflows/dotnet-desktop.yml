@@ -1,0 +1,50 @@
+name: .NET Desktop CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    env:
+      solution: grocery_api/grocery_api.sln
+      buildPlatform: Any CPU
+      buildConfiguration: Release
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Step 2: Setup .NET
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+
+      # Step 3: Restore NuGet packages
+      - name: Restore NuGet packages
+        run: dotnet restore ${{ env.solution }}
+
+      # Step 4: Build the solution
+      - name: Build solution
+        run: dotnet build ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-restore
+
+      # Step 5: Run unit tests
+      - name: Run unit tests
+        run: dotnet test ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-build --verbosity normal
+
+      # Step 6: Publish build artifacts 
+      - name: Publish build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: BuildArtifacts
+          path: grocery_api/bin/${{ env.buildConfiguration }}
