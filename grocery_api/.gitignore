@@ -1,0 +1,28 @@
+# Visual Studio
+.vs/
+
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Dependency directories
+packages/
+node_modules/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.pid
+*.lock
+
+# IDE-specific files
+*.idea/
