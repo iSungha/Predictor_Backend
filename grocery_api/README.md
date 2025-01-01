@@ -24,7 +24,9 @@ This project represents the API layer of the **Grocery Predictor** application, 
 
 4. **Run the Application**:
    - Build and run the project in Visual Studio to automatically create a Docker image and start the PostgreSQL container.
-
+5. **Run the Nuxt 3 Frontend App**:
+   - Once the API is running, run the Frontend app.
+   - At ('https://github.com/iSungha/Predictor_Frontend')
 ---
 
 ## Database Configuration
