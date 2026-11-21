@@ -5,7 +5,7 @@ An ASP.NET Core API for querying historical grocery prices, adding price records
 ## Features
 
 - Query all historical records or a product's history, and add records through the API.
-- Generate next-month estimates using exponential moving average (EMA), linear regression, and polynomial regression.
+- Estimate each supported product's next-month price from its historical price series using one of three models: exponential moving average (EMA), linear regression, or polynomial regression.
 - Retrieve saved estimates for all products or one product.
 - Explore the API with Swagger in the Development environment.
 
