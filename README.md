@@ -28,4 +28,6 @@ The .NET 8 ASP.NET Core application exposes controller endpoints and registers r
 
 You will need the .NET 8 SDK, Docker Desktop, and Visual Studio 2022 or later with container support. Start Docker Desktop, open [`grocery_api/grocery_api.sln`](grocery_api/grocery_api.sln) in Visual Studio, restore the NuGet packages, and run the project with its configured Docker profile. The API's Swagger UI is available under `/swagger` at the local HTTPS address shown by the project.
 
-Keep active database credentials in secure local or deployment configuration. Do not commit secret values.
+**Local database configuration:** This project uses PostgreSQL running in a local Docker container, not a remotely hosted database. You may need to adjust the database username, password, or connection string to match your local Docker setup. Do not reuse the example credentials for a production or publicly accessible database.
+
+Do not commit active secret values.
