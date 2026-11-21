@@ -1,0 +1,33 @@
+# Grocery Price Prediction API
+
+An ASP.NET Core API for querying historical grocery prices, adding price records, and storing next-month price estimates for supported products. Historical input is loaded from a bundled CSV dataset.
+
+## Features
+
+- Query all historical records or a product's history, and add records through the API.
+- Estimate each supported product's next-month price from its historical price series using one of three models: exponential moving average (EMA), linear regression, or polynomial regression.
+- Retrieve saved estimates for all products or one product.
+- Explore the API with Swagger in the Development environment.
+
+## API overview
+
+| Method | Route | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/RecordTable` | List historical records |
+| `GET` | `/api/RecordTable/itemname/{productName}` | Get records for one product |
+| `POST` | `/api/RecordTable/add` | Add a historical price record |
+| `POST` | `/api/GroceryItem/predict/{productNameToPredict}` | Generate and save the next-month estimate |
+| `GET` | `/api/GroceryItem/all` | List saved estimates |
+| `GET` | `/api/GroceryItem/name/{productName}` | Get estimates for one product |
+
+## Architecture and technologies
+
+The .NET 8 ASP.NET Core application exposes controller endpoints and registers repository interfaces through dependency injection. PostgreSQL stores historical records and estimates; Npgsql and Entity Framework Core provide database integration, while Evolve applies schema migrations. MathNet.Numerics supports the prediction calculations. The application initializes its database and loads the bundled historical CSV at startup.
+
+## Run locally
+
+You will need the .NET 8 SDK, Docker Desktop, and Visual Studio 2022 or later with container support. Start Docker Desktop, open [`grocery_api/grocery_api.sln`](grocery_api/grocery_api.sln) in Visual Studio, restore the NuGet packages, and run the project with its configured Docker profile. The API's Swagger UI is available under `/swagger` at the local HTTPS address shown by the project.
+
+**Local database configuration:** This project uses PostgreSQL running in a local Docker container, not a remotely hosted database. You may need to adjust the database username, password, or connection string to match your local Docker setup. Do not reuse the example credentials for a production or publicly accessible database.
+
+Do not commit active secret values.
