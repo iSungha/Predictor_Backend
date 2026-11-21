@@ -42,9 +42,9 @@ jobs:
       - name: Run unit tests
         run: dotnet test ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-build --verbosity normal
 
-      # Step 6: Publish build artifacts 
+      # Step 6: Publish build artifacts
       - name: Publish build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: BuildArtifacts
           path: grocery_api/bin/${{ env.buildConfiguration }}
